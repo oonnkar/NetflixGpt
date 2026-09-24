@@ -1,9 +1,65 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import validateCredentials from "../utils/validateCredentials";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [signInForm, setSignInForm] = useState(true);
+  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
-  function handleSignInClick() {
+  const email = useRef();
+  const password = useRef();
+
+  function handleSignInAndUp(event) {
+    event.preventDefault();
+    const validationErrors = validateCredentials(
+      email.current.value.trim(),
+      password.current.value,
+    );
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length > 0) {
+      return;
+    }
+    if (!signInForm) {
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value.trim(),
+        password.current.value,
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          navigate("/browse");
+          // ...
+        })
+        .catch((error) => {
+          setErrors({ form: error.message });
+        });
+    } else {
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value.trim(),
+        password.current.value,
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          navigate("/browse");
+          // ...
+        })
+        .catch((error) => {
+          setErrors({ form: error.message });
+        });
+    }
+  }
+
+  function handleSignFormInClick() {
     setSignInForm(!signInForm);
   }
 
@@ -20,10 +76,14 @@ const Login = () => {
           {signInForm ? "Sign In" : "Sign Up"}
         </h1>
         <input
+          ref={email}
           className="mb-4 w-full rounded bg-[#333] px-4 py-4 text-sm text-white outline-none placeholder:text-gray-400 focus:bg-[#454545]"
           type="email"
           placeholder="Email or phone number"
         />
+        {errors.email && (
+          <p className="-mt-2 mb-4 text-sm text-red-500">{errors.email}</p>
+        )}
         {!signInForm && (
           <input
             className="mb-4 w-full rounded bg-[#333] px-4 py-4 text-sm text-white outline-none placeholder:text-gray-400 focus:bg-[#454545]"
@@ -32,11 +92,21 @@ const Login = () => {
           />
         )}
         <input
+          ref={password}
           className="mb-6 w-full rounded bg-[#333] px-4 py-4 text-sm text-white outline-none placeholder:text-gray-400 focus:bg-[#454545]"
           type="password"
           placeholder="Password"
         />
-        <button className="w-full rounded bg-[#e50914] py-3 font-semibold transition-colors hover:bg-[#f40612]">
+        {errors.password && (
+          <p className="-mt-4 mb-4 text-sm text-red-500">{errors.password}</p>
+        )}
+        {errors.form && (
+          <p className="-mt-4 mb-4 text-sm text-red-500">{errors.form}</p>
+        )}
+        <button
+          onClick={handleSignInAndUp}
+          className="w-full rounded bg-[#e50914] py-3 font-semibold transition-colors hover:bg-[#f40612]"
+        >
           {signInForm ? "Sign In" : "Sign Up"}
         </button>
         {signInForm && (
@@ -54,7 +124,7 @@ const Login = () => {
           {signInForm ? "New to Netflix?" : "Already have an account?"}{" "}
           <button
             type="button"
-            onClick={handleSignInClick}
+            onClick={handleSignFormInClick}
             className="text-white hover:underline"
           >
             {signInForm ? "Sign up now." : "Sign in now."}
