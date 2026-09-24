@@ -1,18 +1,36 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../utils/firebase";
-import { signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { addUser, removeUser } from "../utils/__redux_store__/userSlice";
+import { LOGO } from "../utils/constants";
 
 const Header = () => {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName } = user;
+        dispatch(
+          addUser({ uid: uid, emailId: email, displayName: displayName }),
+        );
+        navigate("/browse");
+      } else {
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const handleSignOut = () => {
     signOut(auth)
-      .then(() => {
-        navigate("/");
-      })
+      .then(() => {})
       .catch((error) => {
         navigate("/error");
       });
@@ -22,7 +40,7 @@ const Header = () => {
     <header className="absolute left-0 top-0 z-10 box-border flex w-full items-center justify-between bg-[linear-gradient(180deg,#000_0%,rgba(0,0,0,0.75)_70%,transparent_100%)] px-[4%] py-[18px]">
       <img
         alt="Netflix"
-        src="https://occ.a.nflxso.net/dnmt/api/v6/iL4oJVDYZ8KLSrJ6eG2OwtghbfQ/AAAAAdEhm1UzVexHjKqFOP9W6E2UVtkWFvL-vdxIEbTU81rsqNuPmDDy_dQvmQ85ath49JBruVV4aGQA3gY2Dl5SiqFf-AEwPAZBTNkW8FMxGXpDN2mHrf8KlRRiddj1P422ZW1eZkZNWLTd.svg"
+        src={LOGO}
         className="h-[42px] w-auto"
       />
       <div>

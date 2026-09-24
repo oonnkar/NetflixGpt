@@ -5,12 +5,11 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
+import { NETFLIX_BACKGROUND } from "../utils/constants";
 
 const Login = () => {
   const [signInForm, setSignInForm] = useState(true);
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate();
 
   const email = useRef();
   const password = useRef();
@@ -35,7 +34,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          navigate("/browse");
           // ...
         })
         .catch((error) => {
@@ -50,7 +48,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          navigate("/browse");
           // ...
         })
         .catch((error) => {
@@ -67,7 +64,7 @@ const Login = () => {
     <div className="relative flex min-h-screen items-center justify-center bg-black">
       <img
         className="absolute inset-0 h-full w-full object-cover opacity-50"
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/4263c437-c678-4724-ad80-e3ba0dc8761e/web/IN-en-20260921-TRIFECTA-perspective_95810136-2c4a-4ab4-a323-50418521e261_large.jpg"
+        src={NETFLIX_BACKGROUND}
         alt="Netflix background"
       />
       <div className="absolute inset-0 bg-black/40" />
