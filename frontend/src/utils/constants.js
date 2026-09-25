@@ -16,4 +16,10 @@ export const API_OPTIONS = {
   },
 };
 
-export const TMDB_IMAGE_URL = "https://image.tmdb.org/t/p/w500/"
+export const TMDB_IMAGE_URL = "https://image.tmdb.org/t/p/w500/";
+
+export const OPENAI_KEY =
+  "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";
+
+
+  // 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

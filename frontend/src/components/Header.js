@@ -92,13 +92,13 @@ const Header = () => {
             </div>
             <button
               onClick={handleGPTSearchClick}
-              className="rounded-md border border-white/40 bg-black/30 px-3 py-2 text-xs font-semibold text-white shadow-md backdrop-blur-sm transition-all duration-200 hover:border-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-black sm:px-4 sm:text-sm"
+              className="rounded-md border border-white/25 bg-white/10 px-3 py-2 text-xs font-semibold text-white shadow-md backdrop-blur-sm transition-all duration-200 hover:border-white/60 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-black sm:px-4 sm:text-sm"
             >
               GPT Search
             </button>
             <button
               onClick={handleSignOut}
-              className="rounded-md bg-red-600 px-3 py-2 text-xs font-semibold text-white shadow-md transition-all duration-200 hover:bg-red-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-black sm:px-4 sm:text-sm"
+              className="rounded-md bg-[#e50914] px-3 py-2 text-xs font-semibold text-white shadow-md transition-all duration-200 hover:bg-[#f6121d] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-black sm:px-4 sm:text-sm"
             >
               Sign Out
             </button>

@@ -67,8 +67,8 @@ const Login = () => {
         src={NETFLIX_BACKGROUND}
         alt="Netflix background"
       />
-      <div className="absolute inset-0 bg-black/40" />
-      <form className="relative z-10 w-full max-w-md rounded-md bg-black/75 px-8 py-12 text-white shadow-xl sm:px-16">
+      <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/50 to-black/85" />
+      <form className="relative z-10 w-full max-w-md rounded-lg border border-white/10 bg-black/75 px-8 py-12 text-white shadow-2xl shadow-black/60 backdrop-blur-[2px] sm:px-16">
         <h1 className="mb-7 text-3xl font-bold">
           {signInForm ? "Sign In" : "Sign Up"}
         </h1>
