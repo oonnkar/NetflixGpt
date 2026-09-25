@@ -54,7 +54,7 @@ const GPTSearchBar = () => {
   }
 
   return (
-    <div className="pt-8 px-4 md:px-8">
+    <div className="px-0 pt-4 sm:px-4 md:px-8">
       <form
         onSubmit={(e) => e.preventDefault()}
         className="mx-auto flex w-full max-w-3xl overflow-hidden rounded-full bg-white shadow-lg"
@@ -63,11 +63,11 @@ const GPTSearchBar = () => {
           ref={searchText}
           type="text"
           placeholder={languageSyntax[lang].searchPrompt}
-          className="flex-1 border-none bg-transparent px-5 py-4 text-lg text-gray-800 placeholder:text-gray-500 focus:outline-none"
+          className="min-w-0 flex-1 border-none bg-transparent px-4 py-3 text-sm text-gray-800 placeholder:text-gray-500 focus:outline-none sm:px-5 sm:py-4 sm:text-lg"
         />
         <button
           onClick={handleMovieSearch}
-          className="bg-red-600 px-6 py-4 text-base font-semibold text-white transition hover:bg-red-700"
+          className="shrink-0 bg-red-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-red-700 sm:px-6 sm:py-4 sm:text-base"
         >
           Search
         </button>

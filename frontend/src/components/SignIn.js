@@ -68,8 +68,8 @@ const Login = () => {
         alt="Netflix background"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/50 to-black/85" />
-      <form className="relative z-10 w-full max-w-md rounded-lg border border-white/10 bg-black/75 px-8 py-12 text-white shadow-2xl shadow-black/60 backdrop-blur-[2px] sm:px-16">
-        <h1 className="mb-7 text-3xl font-bold">
+      <form className="relative z-10 my-4 w-[calc(100%-2rem)] max-w-md rounded-lg border border-white/10 bg-black/75 px-5 py-8 text-white shadow-2xl shadow-black/60 backdrop-blur-[2px] sm:px-16 sm:py-12">
+        <h1 className="mb-7 text-2xl font-bold sm:text-3xl">
           {signInForm ? "Sign In" : "Sign Up"}
         </h1>
         <input
@@ -117,7 +117,7 @@ const Login = () => {
             </a>
           </div>
         )}
-        <p className="mt-12 text-gray-400">
+        <p className="mt-8 text-sm text-gray-400 sm:mt-12 sm:text-base">
           {signInForm ? "New to Netflix?" : "Already have an account?"}{" "}
           <button
             type="button"

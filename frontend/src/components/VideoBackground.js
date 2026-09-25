@@ -8,7 +8,7 @@ const VideoBackground = ({ movieId }) => {
 
   return (
     <div
-      className="relative h-screen w-full overflow-hidden bg-black"
+      className="relative h-[70svh] min-h-[430px] w-full overflow-hidden bg-black sm:h-[78vh] lg:h-screen"
     >
       <iframe
         className="pointer-events-none absolute left-1/2 top-1/2 h-[56.25vw] min-h-screen w-screen min-w-[177.78vh] -translate-x-1/2 -translate-y-1/2 border-0"

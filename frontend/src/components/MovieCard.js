@@ -2,9 +2,9 @@ import React from "react";
 import { TMDB_IMAGE_URL } from "../utils/constants";
 
 const MovieCard = ({ movie }) => {
-  return <div className="group relative w-48 flex-shrink-0 cursor-pointer overflow-hidden rounded-md bg-[#181818] shadow-lg transition-all duration-300 hover:z-10 hover:scale-110 hover:shadow-2xl hover:shadow-black/70">
+  return <div className="group relative w-full cursor-pointer overflow-hidden rounded-md bg-[#181818] shadow-lg transition-all duration-300 hover:z-10 hover:scale-105 hover:shadow-2xl hover:shadow-black/70">
   <img
-    className="h-72 w-full object-cover transition duration-500 group-hover:scale-105 group-hover:opacity-60"
+    className="aspect-[2/3] h-auto w-full object-cover transition duration-500 group-hover:scale-105 group-hover:opacity-60"
     src={`${TMDB_IMAGE_URL}${movie?.poster_path}.jpg`}
     alt={movie?.title || "Movie poster"}
   />

@@ -11,7 +11,7 @@ const MovieList = ({ title, movies }) => {
         {movies?.map((movie) => (
           <div
             key={movie.id}
-            className="group relative w-36 flex-shrink-0 overflow-hidden rounded-md bg-zinc-900 shadow-lg shadow-black/40 transition duration-300 ease-out hover:z-10 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl hover:shadow-red-950/70 sm:w-44 md:w-52"
+            className="group relative w-32 flex-shrink-0 overflow-hidden rounded-md bg-zinc-900 shadow-lg shadow-black/40 transition duration-300 ease-out hover:z-10 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl hover:shadow-red-950/70 sm:w-40 md:w-48"
           >
             <MovieCard movie={movie}></MovieCard>
           </div>

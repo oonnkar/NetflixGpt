@@ -51,13 +51,13 @@ const Header = () => {
   }
 
   return (
-    <header className="absolute left-0 top-0 z-10 flex w-full items-center justify-between bg-[linear-gradient(180deg,#000_0%,rgba(0,0,0,0.82)_65%,transparent_100%)] px-[4%] py-5 backdrop-blur-[2px]">
+    <header className="absolute left-0 top-0 z-10 flex w-full items-start justify-between gap-3 bg-[linear-gradient(180deg,#000_0%,rgba(0,0,0,0.82)_65%,transparent_100%)] px-4 py-4 backdrop-blur-[2px] sm:items-center sm:px-[4%] sm:py-5">
       <img
         alt="Netflix"
         src={LOGO}
-        className="h-9 w-auto transition-transform duration-200 hover:scale-105 sm:h-[42px]"
+        className="h-7 w-auto shrink-0 transition-transform duration-200 hover:scale-105 sm:h-[42px]"
       />
-      <div className="flex items-center gap-2 sm:gap-3">
+      <div className="flex min-w-0 flex-wrap items-center justify-end gap-1.5 sm:gap-3">
         {user && (
           <>
             <div className="flex overflow-hidden rounded-md border border-white/40 bg-black/30 text-xs font-semibold text-white shadow-md backdrop-blur-sm sm:text-sm">
@@ -92,15 +92,17 @@ const Header = () => {
             </div>
             <button
               onClick={handleGPTSearchClick}
-              className="rounded-md border border-white/25 bg-white/10 px-3 py-2 text-xs font-semibold text-white shadow-md backdrop-blur-sm transition-all duration-200 hover:border-white/60 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-black sm:px-4 sm:text-sm"
+              className="rounded-md border border-white/25 bg-white/10 px-2.5 py-2 text-xs font-semibold text-white shadow-md backdrop-blur-sm transition-all duration-200 hover:border-white/60 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-black sm:px-4 sm:text-sm"
             >
-              GPT Search
+              <span className="sm:hidden">GPT</span>
+              <span className="hidden sm:inline">GPT Search</span>
             </button>
             <button
               onClick={handleSignOut}
-              className="rounded-md bg-[#e50914] px-3 py-2 text-xs font-semibold text-white shadow-md transition-all duration-200 hover:bg-[#f6121d] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-black sm:px-4 sm:text-sm"
+              className="rounded-md bg-[#e50914] px-2.5 py-2 text-xs font-semibold text-white shadow-md transition-all duration-200 hover:bg-[#f6121d] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-black sm:px-4 sm:text-sm"
             >
-              Sign Out
+              <span className="sm:hidden">Sign out</span>
+              <span className="hidden sm:inline">Sign Out</span>
             </button>
           </>
         )}
